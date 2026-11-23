@@ -1,0 +1,6 @@
+{
+  "name": "Farmacia Vida Sana Ejemplo",
+  "description": "Sitio web prototipo de Farmacia Vida Sana Ejemplo con asistente virtual Sofía integrada por texto y voz en vivo.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

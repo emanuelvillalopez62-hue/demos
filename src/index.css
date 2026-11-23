@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+:root {
+  --bg-canvas: #f8faf7;
+  --bg-surface: #ffffff;
+  --bg-subtle: #edf2ed;
+  --border-hairline: #d4dfd6;
+  --text-primary: #14231b;
+  --text-secondary: #43584c;
+  --text-muted: #5b7064;
+  --brand: #185c41;
+  --brand-hover: #114530;
+  --brand-soft: #e1efe7;
+  --accent: #9e4f14;
+  --accent-hover: #833f0d;
+  --chat-bg: #ebe9e1;
+  --chat-user: #d3eadb;
+  --chat-agent: #ffffff;
+  --focus-ring: #185c41;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-canvas: #0f1713;
+    --bg-surface: #16211b;
+    --bg-subtle: #1c2b23;
+    --border-hairline: #2a3c32;
+    --text-primary: #edf3ef;
+    --text-secondary: #b7c8be;
+    --text-muted: #93a79b;
+    --brand: #36936c;
+    --brand-hover: #45a97f;
+    --brand-soft: #1b382b;
+    --accent: #d88342;
+    --accent-hover: #e59354;
+    --chat-bg: #121c17;
+    --chat-user: #1d4232;
+    --chat-agent: #1a2720;
+    --focus-ring: #68c69b;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display {
+  font-family: "Fraunces", Georgia, serif;
+}
+
+.font-mono-data {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  background-color: var(--brand);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 0.5rem;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
