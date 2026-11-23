@@ -238,14 +238,23 @@ export function ChatWidget({
           setErrorMsg(copy.errors.fallbackServer);
         }
       } else {
-        const data = (await res.json()) as {
+        const rawText = await res.text();
+        let data: {
           reply?: string;
           error?: string;
           toolEvents?: Array<{ name: string; ok: boolean; summary: string }>;
-        };
+        } = {};
+        try {
+          data = JSON.parse(rawText);
+        } catch {
+          data = {};
+        }
 
         if (!res.ok || !data.reply) {
-          setErrorMsg(data.error || copy.errors.fallbackServer);
+          setErrorMsg(
+            data.error ||
+              `${copy.errors.fallbackServer}${res.status ? ` (HTTP ${res.status})` : ''}`,
+          );
           return;
         }
 
@@ -333,6 +342,22 @@ export function ChatWidget({
     const player = new PcmAudioPlayer();
     player.ensureContext();
     playerRef.current = player;
+
+    try {
+      const healthRes = await fetch('/api/health');
+      if (healthRes.ok) {
+        const health = (await healthRes.json()) as { hasLiveVoice?: boolean };
+        if (health.hasLiveVoice === false) {
+          player.close();
+          playerRef.current = null;
+          setErrorMsg(copy.errors.liveUnavailableServerless);
+          setStatusKey('online');
+          return;
+        }
+      }
+    } catch {
+      // proceed and let WebSocket attempt handle connectivity
+    }
 
     let stream: MediaStream;
     try {

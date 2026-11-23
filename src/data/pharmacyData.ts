@@ -205,6 +205,7 @@ export interface LocalizedPharmacyContent {
       connectionError: string;
       liveError: string;
       liveConnectError: string;
+      liveUnavailableServerless: string;
       fallbackServer: string;
     };
   };
@@ -539,6 +540,8 @@ export const PHARMACY_COPY: Record<Language, LocalizedPharmacyContent> = {
         connectionError: 'Error de conexión con Sofía. Verifica tu red e intenta de nuevo.',
         liveError: 'Se interrumpió la conexión de voz en vivo.',
         liveConnectError: 'No se pudo conectar la llamada de voz en vivo con Sofía.',
+        liveUnavailableServerless:
+          'Las llamadas de voz en vivo (/live) requieren un servidor Node persistente y no están disponibles en despliegue serverless (Vercel). Puedes seguir usando el chat de texto con Sofía.',
         fallbackServer:
           'No pude obtener respuesta del servidor en este momento. Intenta nuevamente.',
       },
@@ -868,6 +871,8 @@ export const PHARMACY_COPY: Record<Language, LocalizedPharmacyContent> = {
         connectionError: 'Connection error with Sofía. Please check your network and try again.',
         liveError: 'Live voice connection was interrupted.',
         liveConnectError: 'Could not connect the live voice call with Sofía.',
+        liveUnavailableServerless:
+          'Live voice calls (/live) require a persistent Node server and are unavailable on serverless hosting (Vercel). You can keep chatting with Sofía by text.',
         fallbackServer: 'Could not get a response from the server right now. Please try again.',
       },
     },

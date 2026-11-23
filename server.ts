@@ -35,7 +35,7 @@ async function startServer() {
   app.use(express.json({ limit: '1mb' }));
 
   app.get('/api/health', (_req, res) => {
-    res.json(getHealthPayload());
+    res.json(getHealthPayload(true));
   });
 
   // [DATOS DE EJEMPLO] Endpoint de formulario de contacto web + correo de confirmación vía Resend

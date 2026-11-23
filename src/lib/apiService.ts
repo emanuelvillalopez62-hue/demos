@@ -53,7 +53,7 @@ export function getGeminiClient(apiVersion?: string): GoogleGenAI | null {
   });
 }
 
-export function getHealthPayload() {
+export function getHealthPayload(hasLiveVoice = false) {
   const geminiKey = process.env.GEMINI_API_KEY?.trim();
   const resendKey = process.env.RESEND_API_KEY?.trim();
   return {
@@ -61,6 +61,7 @@ export function getHealthPayload() {
     hasGeminiKey: Boolean(geminiKey && geminiKey !== 'MY_GEMINI_API_KEY'),
     hasOpenAiKey: Boolean(getOpenAiApiKey()),
     hasResendKey: Boolean(resendKey && resendKey !== 'MY_RESEND_API_KEY'),
+    hasLiveVoice,
   };
 }
 
